@@ -38,7 +38,7 @@ const workshops = [
 ]
 
 const bookingSessionUrl = 'https://forms.gle/6CcMTZwz3zCo6Nre8'
-const logoImage = 'public/assets/IMG_3208.PNG'
+const logoImage = 'src/assets/IMG_3208.PNG'
 
 function App() {
   const [page, setPage] = useState<Page>('home')
