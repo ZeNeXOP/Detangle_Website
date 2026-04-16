@@ -1,0 +1,66 @@
+:root {
+  --text: #526068;
+  --text-h: #1f4f54;
+  --bg: #f8f9f7;
+  --surface: #fff6cf;
+  --soft-surface: #faefbf;
+  --container-soft: #fff9e2;
+  --border: #d7ddd8;
+  --primary-teal: #2d7377;
+  --primary-teal-dark: #1f5c5f;
+  --focus-ring: rgba(45, 115, 119, 0.35);
+
+  --sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --heading: Georgia, 'Times New Roman', serif;
+
+  font: 17px/1.55 var(--sans);
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: radial-gradient(circle at top, #fbf7e5 0%, var(--bg) 30%);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 24px;
+  margin: 0 0 14px;
+}
+
+h2 {
+  margin: 0 0 10px;
+  font-size: 1.65rem;
+}
+
+p {
+  margin: 0;
+}
+
+#root {
+  min-height: 100vh;
+}
