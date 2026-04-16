@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import './App.css'
-import logoImage from './assets/IMG_3208.PNG'
 import Navbar from './components/Navbar'
 import Hero from './pages/Hero'
 import About from './pages/About'
@@ -10,6 +9,7 @@ import { workshops } from './data/workshops'
 import type { Page } from './types'
 
 const bookingSessionUrl = 'https://forms.gle/6CcMTZwz3zCo6Nre8'
+const logoImage = '/favicon.svg'
 
 export default function AppRefactored() {
   const [page, setPage] = useState<Page>('home')
@@ -63,7 +63,6 @@ export default function AppRefactored() {
           <Hero
             bookingSessionUrl={bookingSessionUrl}
             heroBookingCtaRef={heroBookingCtaRef}
-            onRegister={() => setPage('register')}
             onOpenGallery={() => setPage('gallery')}
           />
         )}

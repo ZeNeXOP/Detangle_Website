@@ -8,14 +8,12 @@ import PastWorkshopsSection from '../components/PastWorkshopsSection'
 type HeroPageProps = {
   bookingSessionUrl: string
   heroBookingCtaRef: RefObject<HTMLAnchorElement | null>
-  onRegister: () => void
   onOpenGallery: () => void
 }
 
 export default function Hero({
   bookingSessionUrl,
   heroBookingCtaRef,
-  onRegister,
   onOpenGallery,
 }: HeroPageProps) {
   return (
@@ -24,7 +22,7 @@ export default function Hero({
       <UpcomingEvent />
       <WelcomeSection />
       <ServicesSection />
-      <PastWorkshopsSection onRegister={onRegister} onOpenGallery={onOpenGallery} />
+      <PastWorkshopsSection onOpenGallery={onOpenGallery} />
     </div>
   )
 }

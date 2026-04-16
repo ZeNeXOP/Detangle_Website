@@ -1,34 +1,22 @@
-import img1 from '../assets/photo_6109390223658650549_w.jpg'
-import img2 from '../assets/photo_6109390223658650550_w.jpg'
-import img3 from '../assets/photo_6109390223658650551_w.jpg'
-import img4 from '../assets/photo_6109390223658650552_w.jpg'
-import img5 from '../assets/photo_6109390223658650553_w.jpg'
-import img6 from '../assets/photo_6109390223658650554_w.jpg'
-import img7 from '../assets/photo_6109390223658650557_w.jpg'
-import img8 from '../assets/photo_6269179564168778030_y.jpg'
-import img9 from '../assets/photo_6269179564168778031_y.jpg'
-
 type PastWorkshopsSectionProps = {
-  onRegister: () => void
   onOpenGallery: () => void
 }
 
 export default function PastWorkshopsSection({
-  onRegister,
   onOpenGallery,
 }: PastWorkshopsSectionProps) {
   // Images for the landing-page "Past Workshops" scroller (right-to-left)
   // Keep imports in this file so it stays easy to swap/add gallery images later.
   const images = [
-    { src: img1, alt: 'Detangle workshop photo 1' },
-    { src: img2, alt: 'Detangle workshop photo 2' },
-    { src: img3, alt: 'Detangle workshop photo 3' },
-    { src: img4, alt: 'Detangle workshop photo 4' },
-    { src: img5, alt: 'Detangle workshop photo 5' },
-    { src: img6, alt: 'Detangle workshop photo 6' },
-    { src: img7, alt: 'Detangle workshop photo 7' },
-    { src: img8, alt: 'Detangle workshop photo 8' },
-    { src: img9, alt: 'Detangle workshop photo 9' },
+    { src: '/assets/workshop-1.jpg', alt: 'Detangle workshop photo 1' },
+    { src: '/assets/workshop-2.jpg', alt: 'Detangle workshop photo 2' },
+    { src: '/assets/workshop-3.jpg', alt: 'Detangle workshop photo 3' },
+    { src: '/assets/workshop-4.jpg', alt: 'Detangle workshop photo 4' },
+    { src: '/assets/workshop-5.jpg', alt: 'Detangle workshop photo 5' },
+    { src: '/assets/workshop-6.jpg', alt: 'Detangle workshop photo 6' },
+    { src: '/assets/workshop-7.jpg', alt: 'Detangle workshop photo 7' },
+    { src: '/assets/workshop-8.jpg', alt: 'Detangle workshop photo 8' },
+    { src: '/assets/workshop-9.jpg', alt: 'Detangle workshop photo 9' },
   ]
 
   return (

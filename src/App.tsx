@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { FormEvent } from 'react'
 import './App.css'
-import logoImage from './assets/IMG_3208.PNG'
 
 type Page = 'home' | 'about' | 'register'
 
@@ -39,6 +38,7 @@ const workshops = [
 ]
 
 const bookingSessionUrl = 'https://forms.gle/6CcMTZwz3zCo6Nre8'
+const logoImage = '/favicon.svg'
 
 function App() {
   const [page, setPage] = useState<Page>('home')

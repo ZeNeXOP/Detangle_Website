@@ -2,9 +2,9 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import AppRefactored from './AppRefactored'
-import logoImage from './assets/IMG_3208.PNG'
 
 const faviconElement = document.querySelector("link[rel~='icon']") as HTMLLinkElement | null
+const logoImage = '/favicon.svg'
 
 if (faviconElement) {
   faviconElement.href = logoImage
