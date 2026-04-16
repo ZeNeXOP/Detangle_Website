@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 const registrationUrl = 'https://forms.gle/MUzD1EnHe2M9hGAK6'
-const posterSrc = 'src/assets/poster.jpeg'
+const posterSrc = '/assets/poster.jpeg'
 
 export default function UpcomingEvent() {
   const [isPosterOpen, setIsPosterOpen] = useState(false)
