@@ -4,7 +4,7 @@ import './index.css'
 import AppRefactored from './AppRefactored'
 
 const faviconElement = document.querySelector("link[rel~='icon']") as HTMLLinkElement | null
-const logoImage = '/favicon.svg'
+const logoImage = 'public/assets/IMG_3208.PNG'
 
 if (faviconElement) {
   faviconElement.href = logoImage
