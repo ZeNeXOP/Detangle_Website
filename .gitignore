@@ -30,5 +30,5 @@ backend/venv/
 backend/env/
 
 # Frontend assets (local/static files)
-src/assets/
+
 public/assets/
