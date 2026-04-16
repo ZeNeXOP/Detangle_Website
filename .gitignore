@@ -23,5 +23,12 @@ dist-ssr
 *.sln
 *.sw?
 backend/.env
-backend/.venv
-backend/venv/*
+
+# Python backend virtual environments
+backend/.venv/
+backend/venv/
+backend/env/
+
+# Frontend assets (local/static files)
+src/assets/
+public/assets/
