@@ -14,7 +14,7 @@ export default function LandingHero({
       <h1 className="landing-title">Detangle</h1>
       <p className="landing-subtitle">By Noopur Asthana</p>
       <p className="landing-oneliner">
-        A gentle, non-judgmental zone mein apka swagat hai.
+        Non-judgmental zone me aapka swagat hai!
       </p>
       <a
         ref={heroBookingCtaRef}
