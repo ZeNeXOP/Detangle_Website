@@ -79,8 +79,7 @@ export default function About({ bookingSessionUrl }: AboutPageProps) {
       <section className="about-philosophy">
         <div className="about-philosophy-inner">
           <blockquote className="about-philosophy-quote">
-            "Healing isn't about fixing you. It's about understanding you — gently,
-            patiently, at your own pace."
+            "Be kind to others, especially yourself. Therapy is a brave choice to do that."
           </blockquote>
           <cite className="about-philosophy-cite">— Noopur Asthana</cite>
         </div>
