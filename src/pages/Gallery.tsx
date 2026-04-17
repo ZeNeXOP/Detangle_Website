@@ -1,14 +1,14 @@
-import img1 from '../assets/photo_6109390223658650549_w.jpg'
-import img2 from '../assets/photo_6109390223658650550_w.jpg'
-import img3 from '../assets/photo_6109390223658650551_w.jpg'
-import img4 from '../assets/photo_6109390223658650552_w.jpg'
-import img5 from '../assets/photo_6109390223658650553_w.jpg'
-import img6 from '../assets/photo_6109390223658650554_w.jpg'
-import img7 from '../assets/photo_6109390223658650557_w.jpg'
-import img8 from '../assets/photo_6269179564168778030_y.jpg'
-import img9 from '../assets/photo_6269179564168778031_y.jpg'
-
-const galleryImages = [img1, img2, img3, img4, img5, img6, img7, img8, img9]
+const galleryImages = [
+  '/assets/photo_6109390223658650549_w.jpg',
+  '/assets/photo_6109390223658650550_w.jpg',
+  '/assets/photo_6109390223658650551_w.jpg',
+  '/assets/photo_6109390223658650552_w.jpg',
+  '/assets/photo_6109390223658650553_w.jpg',
+  '/assets/photo_6109390223658650554_w.jpg',
+  '/assets/photo_6109390223658650557_w.jpg',
+  '/assets/photo_6269179564168778030_y.jpg',
+  '/assets/photo_6269179564168778031_y.jpg',
+]
 
 export default function Gallery() {
   return (

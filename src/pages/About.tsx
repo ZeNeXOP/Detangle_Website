@@ -1,4 +1,4 @@
-import noopurPhoto from '../assets/noopur_3.png'
+const noopurPhoto = '/assets/noopur_3.png'
 
 type AboutPageProps = {
   bookingSessionUrl: string
