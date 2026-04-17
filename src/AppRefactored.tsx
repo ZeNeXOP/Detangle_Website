@@ -9,7 +9,7 @@ import { workshops } from './data/workshops'
 import type { Page } from './types'
 
 const bookingSessionUrl = 'https://forms.gle/6CcMTZwz3zCo6Nre8'
-const logoImage = '/assets/IMG_3208.PNG'
+const logoImage = 'src/assets/IMG_3208.PNG'
 
 export default function AppRefactored() {
   const [page, setPage] = useState<Page>('home')

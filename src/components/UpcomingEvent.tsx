@@ -1,25 +1,25 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 
-const registrationUrl = 'https://forms.gle/MUzD1EnHe2M9hGAK6'
-const posterSrc = '/assets/poster.jpeg'
+const registrationUrl = "https://forms.gle/MUzD1EnHe2M9hGAK6";
+const posterSrc = "src/assets/poster.jpeg";
 
 export default function UpcomingEvent() {
-  const [isPosterOpen, setIsPosterOpen] = useState(false)
+  const [isPosterOpen, setIsPosterOpen] = useState(false);
 
   useEffect(() => {
     if (!isPosterOpen) {
-      return
+      return;
     }
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setIsPosterOpen(false)
+      if (event.key === "Escape") {
+        setIsPosterOpen(false);
       }
-    }
+    };
 
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [isPosterOpen])
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isPosterOpen]);
 
   return (
     <>
@@ -46,11 +46,14 @@ export default function UpcomingEvent() {
             <p className="event-eyebrow">Upcoming Workshop · 26 April 2026</p>
 
             <h2 className="event-title">
-              From Procrastination<br />to Action<span className="event-title-accent">:</span> Focus Reset
+              From Procrastination
+              <br />
+              to Action<span className="event-title-accent">:</span> Focus Reset
             </h2>
 
             <p className="event-subhead">
-              An immersive, activity-based workshop to help you stop overthinking and start doing.
+              An immersive, activity-based workshop to help you stop
+              overthinking and start doing.
             </p>
 
             <ul className="event-highlights">
@@ -63,8 +66,8 @@ export default function UpcomingEvent() {
                 Limited group · intimate experience
               </li>
               <li>
-                <span className="event-highlight-icon">🕑</span>
-                2 pm – 4 pm · 2 hours
+                <span className="event-highlight-icon">🕑</span>2 pm – 4 pm · 2
+                hours
               </li>
               <li>
                 <span className="event-highlight-icon">📍</span>
@@ -73,7 +76,9 @@ export default function UpcomingEvent() {
             </ul>
 
             <div className="event-meta">
-              <span className="event-price">₹599 <span className="event-price-sub">per person</span></span>
+              <span className="event-price">
+                ₹599 <span className="event-price-sub">per person</span>
+              </span>
             </div>
 
             <div className="event-cta-row">
@@ -101,7 +106,10 @@ export default function UpcomingEvent() {
           aria-label="Workshop poster preview"
           onClick={() => setIsPosterOpen(false)}
         >
-          <div className="poster-lightbox-content" onClick={(event) => event.stopPropagation()}>
+          <div
+            className="poster-lightbox-content"
+            onClick={(event) => event.stopPropagation()}
+          >
             <button
               type="button"
               className="poster-lightbox-close"
@@ -119,7 +127,5 @@ export default function UpcomingEvent() {
         </div>
       )}
     </>
-  )
+  );
 }
-
-
