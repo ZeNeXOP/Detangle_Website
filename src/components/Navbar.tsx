@@ -59,6 +59,13 @@ export default function Navbar({
         >
           Gallery
         </button>
+        <button
+          type="button"
+          onClick={() => onNavigate('register')}
+          aria-current={page === 'register' ? 'page' : undefined}
+        >
+          Register
+        </button>
         {showBookingCta && (
           <a href={bookingSessionUrl} target="_blank" rel="noreferrer" className="button-primary">
             Book a Session
