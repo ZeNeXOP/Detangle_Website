@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
+.env
 
 # Editor directories and files
 .vscode/*
@@ -28,5 +29,11 @@ backend/.env
 backend/.venv/
 backend/venv/
 backend/env/
+
+# Local Claude Code tooling/scratch files
+.agents/
+.claude/
+notes
+skills-lock.json
 
 # Frontend assets (local/static files)
