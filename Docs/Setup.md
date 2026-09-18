@@ -142,6 +142,23 @@ Browser
 
 **Status: live at `https://detangle.in`.** Next: a production smoke test (see the top-level plan) before starting the backend/data-model rebuild.
 
+### Update: backend moved to Render
+
+The backend no longer runs as a Vercel service — it's now deployed separately on **Render** (`https://detangle-website.onrender.com`, root directory `backend/`, build command `pip install -r requirements.txt`). Vercel's project reverted to a single Vite static site (Framework Preset: Vite, Root Directory `./`).
+
+Routing is now handled by a committed `vercel.json` at the repo root:
+```json
+{
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "https://detangle-website.onrender.com/api/:path*" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
+```
+The first rule proxies `/api/*` to Render (transparently — the browser still sees `detangle.in` as the origin, so cookies/session auth keep working same-origin). The second is the SPA fallback so direct navigation to client-side routes (`/admin`, `/events`, `/book`, etc.) serves `index.html` instead of 404ing.
+
+**Gotcha hit during this migration:** MongoDB Atlas's Network Access list only had the developer's laptop IP allowed. Render doesn't have a fixed outbound IP on standard plans, so its connections got rejected at the TLS layer (`SSL: TLSV1_ALERT_INTERNAL_ERROR` from pymongo — a misleading error for what's actually an IP allowlist issue). Fixed by adding `0.0.0.0/0` to Atlas's Network Access list.
+
 ## 10. Accounts to create later (not needed today)
 
 These belong to the bigger refactor roadmap (notifications) and aren't required to start developing locally or even to do the initial deploy above:
