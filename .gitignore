@@ -37,3 +37,5 @@ notes
 skills-lock.json
 
 # Frontend assets (local/static files)
+# Playwright CLI output (may contain credentials)
+.playwright-cli/

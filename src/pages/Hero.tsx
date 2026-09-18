@@ -3,27 +3,21 @@ import LandingHero from '../components/LandingHero'
 import UpcomingEvent from '../components/UpcomingEvent'
 import WelcomeSection from '../components/WelcomeSection'
 import ServicesSection from '../components/ServicesSection'
-import PastWorkshopsSection from '../components/PastWorkshopsSection'
+import PastEventsSection from '../components/PastEventsSection'
 
 type HeroPageProps = {
-  bookingSessionUrl: string
   heroBookingCtaRef: RefObject<HTMLAnchorElement | null>
-  onOpenGallery: () => void
+  onOpenEvents: () => void
 }
 
-export default function Hero({
-  bookingSessionUrl,
-  heroBookingCtaRef,
-  onOpenGallery,
-}: HeroPageProps) {
+export default function Hero({ heroBookingCtaRef, onOpenEvents }: HeroPageProps) {
   return (
     <div className="home-stack">
-      <LandingHero bookingSessionUrl={bookingSessionUrl} heroBookingCtaRef={heroBookingCtaRef} />
+      <LandingHero heroBookingCtaRef={heroBookingCtaRef} />
       <UpcomingEvent />
       <WelcomeSection />
       <ServicesSection />
-      <PastWorkshopsSection onOpenGallery={onOpenGallery} />
+      <PastEventsSection onOpenEvents={onOpenEvents} />
     </div>
   )
 }
-

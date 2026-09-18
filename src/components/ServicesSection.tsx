@@ -46,7 +46,7 @@ export default function ServicesSection() {
           <ServiceCard
             title="Workshops & Events"
             description="Interactive, activity-based sessions on emotional regulation, self-awareness, procrastination, and more—often using creative approaches like expressive art therapy."
-            variant="workshops"
+            variant="events"
             index={2}
             visible={visible}
           />

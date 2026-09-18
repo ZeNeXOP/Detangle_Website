@@ -1,7 +1,7 @@
 type ServiceCardProps = {
   title: string
   description: string
-  variant: 'therapy' | 'online' | 'workshops' | 'groups'
+  variant: 'therapy' | 'online' | 'events' | 'groups'
   index: number
   visible: boolean
 }

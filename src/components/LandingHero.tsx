@@ -1,14 +1,11 @@
 import type { RefObject } from "react";
+import { Link } from "react-router-dom";
 
 type LandingHeroProps = {
-  bookingSessionUrl: string;
   heroBookingCtaRef: RefObject<HTMLAnchorElement | null>;
 };
 
-export default function LandingHero({
-  bookingSessionUrl,
-  heroBookingCtaRef,
-}: LandingHeroProps) {
+export default function LandingHero({ heroBookingCtaRef }: LandingHeroProps) {
   return (
     <section className="landing-hero">
       <h1 className="landing-title">Detangle</h1>
@@ -16,15 +13,13 @@ export default function LandingHero({
       <p className="landing-oneliner">
         Non-judgmental zone me aapka swagat hai!
       </p>
-      <a
+      <Link
         ref={heroBookingCtaRef}
-        href={bookingSessionUrl}
-        target="_blank"
-        rel="noreferrer"
+        to="/book"
         className="button-primary landing-booking-cta"
       >
         Let&apos;s Detangle Together
-      </a>
+      </Link>
     </section>
   );
 }

@@ -1,8 +1,6 @@
-const noopurPhoto = '/assets/noopur_3.png'
+import { Link } from 'react-router-dom'
 
-type AboutPageProps = {
-  bookingSessionUrl: string
-}
+const noopurPhoto = '/assets/noopur_3.png'
 
 const qualifications = [
   {
@@ -40,7 +38,7 @@ const stats = [
   { number: 'Various', label: 'Workshops & group sessions', sub: 'Self-growth, emotional awareness & life skills' },
 ]
 
-export default function About({ bookingSessionUrl }: AboutPageProps) {
+export default function About() {
   return (
     <div className="about-page">
 
@@ -55,14 +53,9 @@ export default function About({ bookingSessionUrl }: AboutPageProps) {
               Hi, I'm Noopur — the person behind Detangle. My approach to therapy is simple: to
               create a space where you feel safe, heard, and understood, without any judgment.
             </p>
-            <a
-              href={bookingSessionUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="about-hero-cta"
-            >
+            <Link to="/book" className="about-hero-cta">
               Let's Detangle Together
-            </a>
+            </Link>
           </div>
 
           <div className="about-hero-photo-wrap">
@@ -123,14 +116,9 @@ export default function About({ bookingSessionUrl }: AboutPageProps) {
           <p className="about-cta-text">
             Ready to begin? This space is yours — whenever you are.
           </p>
-          <a
-            href={bookingSessionUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="event-register-btn"
-          >
+          <Link to="/book" className="event-register-btn">
             Book a Session
-          </a>
+          </Link>
         </div>
       </section>
 

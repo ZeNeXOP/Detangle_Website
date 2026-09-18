@@ -1,131 +1,91 @@
 import { useEffect, useState } from "react";
+import type { Event } from "../types";
+import { formatEventEyebrow } from "../lib/formatEventDate";
 
-const registrationUrl = "https://forms.gle/MUzD1EnHe2M9hGAK6";
-const posterSrc = "/assets/poster.jpeg";
+function EventCard({ event, compact }: { event: Event; compact: boolean }) {
+  return (
+    <div className={compact ? "event-card" : "event-inner"}>
+      <div className={compact ? "event-card-poster-slot" : "event-poster-slot"}>
+        <div className={compact ? "event-card-poster-placeholder" : "event-poster-placeholder"}>
+          {event.poster_url && (
+            <img
+              src={event.poster_url}
+              alt={`${event.title} poster`}
+              className={compact ? "event-card-poster-image" : "event-poster-image"}
+            />
+          )}
+        </div>
+      </div>
+
+      <div className={compact ? "event-card-details" : "event-details"}>
+        {formatEventEyebrow(event) && (
+          <p className={compact ? "event-card-eyebrow" : "event-eyebrow"}>{formatEventEyebrow(event)}</p>
+        )}
+
+        <h2 className={compact ? "event-card-title" : "event-title"}>{event.title}</h2>
+
+        <p className={compact ? "event-card-subhead" : "event-subhead"}>{event.description}</p>
+
+        {event.location && (
+          <p className={compact ? "event-card-location" : "event-subhead"}>{event.location}</p>
+        )}
+
+        {typeof event.price === "number" && (
+          <div className="event-meta">
+            <span className={compact ? "event-card-price" : "event-price"}>
+              ₹{event.price}
+              <span className="event-price-sub"> per person</span>
+            </span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
 
 export default function UpcomingEvent() {
-  const [isPosterOpen, setIsPosterOpen] = useState(false);
+  const [upcomingEvents, setUpcomingEvents] = useState<Event[] | null>(null);
 
   useEffect(() => {
-    if (!isPosterOpen) {
-      return;
-    }
+    let cancelled = false;
 
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setIsPosterOpen(false);
-      }
+    fetch("/api/events?status=upcoming")
+      .then((res) => (res.ok ? res.json() : []))
+      .then((data: Event[]) => {
+        if (!cancelled) {
+          setUpcomingEvents(data);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setUpcomingEvents([]);
+        }
+      });
+
+    return () => {
+      cancelled = true;
     };
+  }, []);
 
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isPosterOpen]);
+  if (!upcomingEvents || upcomingEvents.length === 0) {
+    return null;
+  }
+
+  if (upcomingEvents.length === 1) {
+    return (
+      <section className="event-section">
+        <EventCard event={upcomingEvents[0]} compact={false} />
+      </section>
+    );
+  }
 
   return (
-    <>
-      <section className="event-section">
-        <div className="event-inner">
-          {/* Left: event poster */}
-          <button
-            type="button"
-            className="event-poster-slot event-poster-trigger"
-            aria-label="Open event poster"
-            onClick={() => setIsPosterOpen(true)}
-          >
-            <div className="event-poster-placeholder">
-              <img
-                src={posterSrc}
-                alt="From Procrastination to Action workshop poster"
-                className="event-poster-image"
-              />
-            </div>
-          </button>
-
-          {/* Right: event details */}
-          <div className="event-details">
-            <p className="event-eyebrow">Upcoming Workshop · 26 April 2026</p>
-
-            <h2 className="event-title">
-              From Procrastination
-              <br />
-              to Action<span className="event-title-accent">:</span> Focus Reset
-            </h2>
-
-            <p className="event-subhead">
-              An immersive, activity-based workshop to help you stop
-              overthinking and start doing.
-            </p>
-
-            <ul className="event-highlights">
-              <li>
-                <span className="event-highlight-icon">🎨</span>
-                Kit with all materials included
-              </li>
-              <li>
-                <span className="event-highlight-icon">👥</span>
-                Limited group · intimate experience
-              </li>
-              <li>
-                <span className="event-highlight-icon">🕑</span>2 pm – 4 pm · 2
-                hours
-              </li>
-              <li>
-                <span className="event-highlight-icon">📍</span>
-                Lucknow · Vijayant khand
-              </li>
-            </ul>
-
-            <div className="event-meta">
-              <span className="event-price">
-                ₹599 <span className="event-price-sub">per person</span>
-              </span>
-            </div>
-
-            <div className="event-cta-row">
-              <a
-                href={registrationUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="event-register-btn"
-              >
-                Register Now
-              </a>
-              <span className="event-facilitator">
-                Hosted by <strong>Detangle</strong> · Noopur Asthana
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {isPosterOpen && (
-        <div
-          className="poster-lightbox"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Workshop poster preview"
-          onClick={() => setIsPosterOpen(false)}
-        >
-          <div
-            className="poster-lightbox-content"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <button
-              type="button"
-              className="poster-lightbox-close"
-              aria-label="Close poster preview"
-              onClick={() => setIsPosterOpen(false)}
-            >
-              ×
-            </button>
-            <img
-              src={posterSrc}
-              alt="From Procrastination to Action workshop poster"
-              className="poster-lightbox-image"
-            />
-          </div>
-        </div>
-      )}
-    </>
+    <section className="event-section event-section--dual">
+      <div className="event-dual-grid">
+        {upcomingEvents.map((event) => (
+          <EventCard key={event.id} event={event} compact />
+        ))}
+      </div>
+    </section>
   );
 }

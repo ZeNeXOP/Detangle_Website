@@ -1,9 +1,18 @@
-export type Page = 'home' | 'about' | 'register' | 'gallery'
+export type EventType = 'workshop' | 'therapy_session' | 'online_session' | 'group_session'
 
-export type Workshop = {
+export type Event = {
   id: string
+  slug: string
   title: string
   description: string
-  date: string
+  type: EventType | null
+  start_datetime: string | null
+  upcoming_cutoff_hours: number
+  location: string
+  price: number | null
+  status: 'upcoming' | 'past'
+  poster_url: string | null
+  gallery_image_urls: string[]
+  gallery_video_urls: string[]
+  whatsapp_cta_text: string
 }
-

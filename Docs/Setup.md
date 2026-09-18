@@ -44,7 +44,7 @@ Skip installing MongoDB Community Server on this machine. Use **MongoDB Atlas** 
 If using VS Code:
 - **ESLint** extension (matches the project's `eslint.config.js`)
 - **MongoDB for VS Code** extension — lets you browse your Atlas cluster's data without leaving the editor
-- **Postman** (https://www.postman.com/downloads/) or the VS Code **Thunder Client** extension — for manually testing the Flask API endpoints (`/api/health`, `/api/registrations`) before the frontend is wired up
+- **Postman** (https://www.postman.com/downloads/) or the VS Code **Thunder Client** extension — for manually testing the Flask API endpoints (`/api/health`, `/api/bookings`) before the frontend is wired up
 
 ## 6. Project setup
 
@@ -53,12 +53,8 @@ From the repo root (`Detangle_Website/`):
 **Frontend:**
 ```powershell
 npm install
-copy .env.example .env
 ```
-Open `.env` and confirm it has:
-```
-VITE_API_BASE_URL=http://localhost:5000
-```
+No `.env` needed — the frontend calls the backend via relative `/api/...` paths (proxied to `localhost:5000` in dev by `vite.config.ts`, same-origin in production).
 
 **Backend:**
 ```powershell
@@ -74,7 +70,7 @@ PORT=5000
 FRONTEND_ORIGIN=http://localhost:5173
 MONGODB_URI=mongodb+srv://<username>:<password>@<cluster-name>.mongodb.net/?retryWrites=true&w=majority
 MONGODB_DB_NAME=detangle_db
-MONGODB_COLLECTION_NAME=registrations
+MONGODB_COLLECTION_NAME=bookings
 ```
 
 ## 7. Smoke test — confirm everything is wired up
@@ -95,8 +91,8 @@ You should see Vite start on `http://localhost:5173`.
 
 **Then check:**
 1. Open http://localhost:5000/api/health in a browser — should return `{"status": "ok"}`.
-2. Open http://localhost:5173, go to the Register page, submit a test entry.
-3. In MongoDB Atlas, browse to your cluster's `detangle_db.registrations` collection (or via the MongoDB for VS Code extension) and confirm the test document landed there.
+2. Open http://localhost:5173, go to the Book a Session page, submit a test entry.
+3. In MongoDB Atlas, browse to your cluster's `detangle_db.bookings` collection (or via the MongoDB for VS Code extension) and confirm the test document landed there.
 
 If all three work, the machine is fully set up.
 
@@ -135,10 +131,8 @@ Browser
 2. In Vercel, **New Project → Import from GitHub**, select the repo.
 3. **Application Preset: Services.** Select *both* the `backend` (Flask) and `frontend` (Vite) service cards — both must be individually selected or Deploy stays disabled.
 4. Accept the generated `vercel.json` as-is.
-5. Under **Environment Variables**, set:
-   - Backend: `MONGODB_URI`, `MONGODB_DB_NAME=detangle_db`, `MONGODB_COLLECTION_NAME=registrations`, `FRONTEND_ORIGIN` (the production domain).
-   - Frontend: `VITE_API_BASE_URL` set to an **explicit empty string** (`""`), not left unset — since frontend and backend now share one origin, the app calls `/api/registrations` as a relative path instead of a full cross-origin URL. Leaving it unset would fall back to `http://localhost:5000` in production.
-6. Deploy, then verify on the temporary `*.vercel.app` URL before adding the custom domain: homepage loads, `/api/health` returns `{"status":"ok"}`, and a real test registration lands in Atlas.
+5. Under **Environment Variables**, set on the backend service: `MONGODB_URI`, `MONGODB_DB_NAME=detangle_db`, `MONGODB_COLLECTION_NAME=bookings`, `FRONTEND_ORIGIN` (the production domain), plus `SECRET_KEY` and the `CLOUDINARY_*` vars once those exist. The frontend needs no env vars — it calls `/api/...` as relative paths, same-origin.
+6. Deploy, then verify on the temporary `*.vercel.app` URL before adding the custom domain: homepage loads, `/api/health` returns `{"status":"ok"}`, and a real test booking lands in Atlas.
 
 ## 9. `detangle.in` — registered and pointed at the deployment
 

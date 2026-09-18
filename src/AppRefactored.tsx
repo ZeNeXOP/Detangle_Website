@@ -1,29 +1,30 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import './App.css'
 import Navbar from './components/Navbar'
 import Hero from './pages/Hero'
 import About from './pages/About'
-import Registration from './pages/Registration'
-import Gallery from './pages/Gallery'
-import { workshops } from './data/workshops'
-import type { Page } from './types'
+import BookSession from './pages/BookSession'
+import Events from './pages/Events'
+import EventDetail from './pages/EventDetail'
 
-const bookingSessionUrl = 'https://forms.gle/6CcMTZwz3zCo6Nre8'
-const logoImage = '/assets/IMG_3208.PNG'
+const AdminApp = lazy(() => import('./admin/AdminApp'))
 
 export default function AppRefactored() {
-  const [page, setPage] = useState<Page>('home')
+  const location = useLocation()
+  const navigate = useNavigate()
   const [showNavBookingCta, setShowNavBookingCta] = useState(false)
   const heroBookingCtaRef = useRef<HTMLAnchorElement | null>(null)
-
-  const apiBaseUrl = useMemo(
-    () => import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:5000',
-    [],
-  )
+  const isHome = location.pathname === '/'
+  const isAdmin = location.pathname.startsWith('/admin')
 
   useEffect(() => {
+    if (isAdmin) {
+      return
+    }
+
     const syncNavBookingCta = () => {
-      if (page !== 'home') {
+      if (!isHome) {
         setShowNavBookingCta(true)
         return
       }
@@ -46,42 +47,53 @@ export default function AppRefactored() {
       window.removeEventListener('scroll', syncNavBookingCta)
       window.removeEventListener('resize', syncNavBookingCta)
     }
-  }, [page])
+  }, [isHome, isAdmin])
+
+  if (isAdmin) {
+    return (
+      <Suspense fallback={<div className="admin-loading">Loading admin…</div>}>
+        <AdminApp />
+      </Suspense>
+    )
+  }
 
   return (
     <div className="site-shell">
-      <Navbar
-        page={page}
-        onNavigate={setPage}
-        bookingSessionUrl={bookingSessionUrl}
-        logoImage={logoImage}
-        showBookingCta={showNavBookingCta}
-      />
+      <Navbar showBookingCta={showNavBookingCta} />
 
       <main className="page-main">
-        {page === 'home' && (
-          <Hero
-            bookingSessionUrl={bookingSessionUrl}
-            heroBookingCtaRef={heroBookingCtaRef}
-            onOpenGallery={() => setPage('gallery')}
+        <Routes>
+          <Route
+            path="/"
+            element={<Hero heroBookingCtaRef={heroBookingCtaRef} onOpenEvents={() => navigate('/events')} />}
           />
-        )}
-
-        {page === 'about' && <About bookingSessionUrl={bookingSessionUrl} />}
-
-        {page === 'gallery' && (
-          <div className="content-shell">
-            <Gallery />
-          </div>
-        )}
-
-        {page === 'register' && (
-          <div className="content-shell" style={{ paddingTop: '92px' }}>
-            <Registration workshops={workshops} bookingSessionUrl={bookingSessionUrl} apiBaseUrl={apiBaseUrl} />
-          </div>
-        )}
+          <Route path="/about" element={<About />} />
+          <Route
+            path="/events"
+            element={
+              <div className="content-shell">
+                <Events />
+              </div>
+            }
+          />
+          <Route
+            path="/events/:slug"
+            element={
+              <div className="content-shell">
+                <EventDetail />
+              </div>
+            }
+          />
+          <Route
+            path="/book"
+            element={
+              <div className="content-shell" style={{ paddingTop: '92px' }}>
+                <BookSession />
+              </div>
+            }
+          />
+        </Routes>
       </main>
     </div>
   )
 }
-

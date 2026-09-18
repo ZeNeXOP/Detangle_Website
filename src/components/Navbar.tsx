@@ -1,30 +1,17 @@
-import type { Page } from '../types'
+import { Link, NavLink } from 'react-router-dom'
+import logo from '../assets/IMG_3208.jpg'
+
 
 type NavbarProps = {
-  page: Page
-  onNavigate: (nextPage: Page) => void
-  bookingSessionUrl: string
-  logoImage: string
   showBookingCta: boolean
 }
 
-export default function Navbar({
-  page,
-  onNavigate,
-  bookingSessionUrl,
-  logoImage,
-  showBookingCta,
-}: NavbarProps) {
+export default function Navbar({ showBookingCta }: NavbarProps) {
   return (
     <header className="site-header">
-      <button
-        className="logo-mark"
-        onClick={() => onNavigate('home')}
-        type="button"
-        aria-label="Go to home"
-      >
-        <img src={logoImage} alt="Detangle logo" />
-      </button>
+      <NavLink className="logo-mark" to="/" aria-label="Go to home">
+        <img src={logo} alt="Detangle logo" />
+      </NavLink>
 
       <div className="brand-copy">
         <p
@@ -38,41 +25,17 @@ export default function Navbar({
       </div>
 
       <nav className="site-nav">
-        <button
-          type="button"
-          onClick={() => onNavigate('home')}
-          aria-current={page === 'home' ? 'page' : undefined}
-        >
+        <NavLink to="/" end>
           Home
-        </button>
-        <button
-          type="button"
-          onClick={() => onNavigate('about')}
-          aria-current={page === 'about' ? 'page' : undefined}
-        >
-          About
-        </button>
-        <button
-          type="button"
-          onClick={() => onNavigate('gallery')}
-          aria-current={page === 'gallery' ? 'page' : undefined}
-        >
-          Gallery
-        </button>
-        <button
-          type="button"
-          onClick={() => onNavigate('register')}
-          aria-current={page === 'register' ? 'page' : undefined}
-        >
-          Register
-        </button>
+        </NavLink>
+        <NavLink to="/about">About</NavLink>
+        <NavLink to="/events">Events</NavLink>
         {showBookingCta && (
-          <a href={bookingSessionUrl} target="_blank" rel="noreferrer" className="button-primary">
+          <Link to="/book" className="button-primary">
             Book a Session
-          </a>
+          </Link>
         )}
       </nav>
     </header>
   )
 }
-

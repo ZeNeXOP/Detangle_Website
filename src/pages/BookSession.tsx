@@ -1,48 +1,37 @@
 import { useState } from 'react'
 import type { FormEvent } from 'react'
-import type { Workshop } from '../types'
 
-type RegistrationPageProps = {
-  workshops: Workshop[]
-  bookingSessionUrl: string
-  apiBaseUrl: string
-}
-
-type RegistrationForm = {
+type BookingForm = {
   full_name: string
   email: string
   phone: string
-  workshop_id: string
-  experience_level: string
   notes: string
 }
 
-export default function Registration({ workshops, bookingSessionUrl, apiBaseUrl }: RegistrationPageProps) {
+export default function BookSession() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitMessage, setSubmitMessage] = useState('')
   const [submitError, setSubmitError] = useState('')
 
-  const [formData, setFormData] = useState<RegistrationForm>({
+  const [formData, setFormData] = useState<BookingForm>({
     full_name: '',
     email: '',
     phone: '',
-    workshop_id: workshops[0].id,
-    experience_level: 'beginner',
     notes: '',
   })
 
-  const updateField = (field: keyof RegistrationForm, value: string) => {
+  const updateField = (field: keyof BookingForm, value: string) => {
     setFormData((current) => ({ ...current, [field]: value }))
   }
 
-  const handleRegistrationSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setSubmitMessage('')
     setSubmitError('')
     setIsSubmitting(true)
 
     try {
-      const response = await fetch(`${apiBaseUrl}/api/registrations`, {
+      const response = await fetch('/api/bookings', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -51,23 +40,16 @@ export default function Registration({ workshops, bookingSessionUrl, apiBaseUrl 
       const payload = (await response.json()) as { message?: string; error?: string }
 
       if (!response.ok) {
-        throw new Error(payload.error ?? 'Registration could not be submitted.')
+        throw new Error(payload.error ?? 'Booking could not be submitted.')
       }
 
-      setSubmitMessage(payload.message ?? 'Registration submitted successfully.')
-      setFormData({
-        full_name: '',
-        email: '',
-        phone: '',
-        workshop_id: workshops[0].id,
-        experience_level: 'beginner',
-        notes: '',
-      })
+      setSubmitMessage(payload.message ?? 'Booking request submitted successfully.')
+      setFormData({ full_name: '', email: '', phone: '', notes: '' })
     } catch (error) {
       const message =
         error instanceof Error
           ? error.message
-          : 'Something went wrong while submitting your registration.'
+          : 'Something went wrong while submitting your booking.'
       setSubmitError(message)
     } finally {
       setIsSubmitting(false)
@@ -76,12 +58,12 @@ export default function Registration({ workshops, bookingSessionUrl, apiBaseUrl 
 
   return (
     <section className="section">
-      <p className="eyebrow">Registration</p>
-      <h1>Register for a Workshop</h1>
+      <p className="eyebrow">Booking</p>
+      <h1>Book a Session</h1>
       <p className="section-intro">
-        Fill in your details and Detangle will confirm your workshop seat by email.
+        Fill in your details and Detangle will get back to you to confirm your session.
       </p>
-      <form className="registration-form" onSubmit={handleRegistrationSubmit}>
+      <form className="booking-form" onSubmit={handleSubmit}>
         <label>
           Full Name
           <input
@@ -114,29 +96,6 @@ export default function Registration({ workshops, bookingSessionUrl, apiBaseUrl 
         </label>
 
         <label>
-          Workshop
-          <select value={formData.workshop_id} onChange={(event) => updateField('workshop_id', event.target.value)}>
-            {workshops.map((workshop) => (
-              <option key={workshop.id} value={workshop.id}>
-                {workshop.title}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <label>
-          Experience Level
-          <select
-            value={formData.experience_level}
-            onChange={(event) => updateField('experience_level', event.target.value)}
-          >
-            <option value="beginner">Beginner</option>
-            <option value="intermediate">Intermediate</option>
-            <option value="experienced">Experienced</option>
-          </select>
-        </label>
-
-        <label>
           Notes (optional)
           <textarea
             rows={4}
@@ -147,20 +106,12 @@ export default function Registration({ workshops, bookingSessionUrl, apiBaseUrl 
         </label>
 
         <button className="button-primary" disabled={isSubmitting} type="submit">
-          {isSubmitting ? 'Submitting...' : 'Submit Registration'}
+          {isSubmitting ? 'Submitting...' : 'Submit'}
         </button>
       </form>
 
       {submitMessage && <p className="status-message success">{submitMessage}</p>}
       {submitError && <p className="status-message error">{submitError}</p>}
-      <p className="helper-text">
-        If the form is temporarily unavailable, you can still book through{' '}
-        <a href={bookingSessionUrl} target="_blank" rel="noreferrer">
-          Google Form
-        </a>
-        .
-      </p>
     </section>
   )
 }
-
