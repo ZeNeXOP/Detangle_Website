@@ -3,14 +3,19 @@ import LoginForm from './LoginForm'
 import AddEventSection from './AddEventSection'
 import EditEventSection from './EditEventSection'
 import DeleteEventSection from './DeleteEventSection'
+import AddBlogSection from './AddBlogSection'
+import EditBlogSection from './EditBlogSection'
+import DeleteBlogSection from './DeleteBlogSection'
 import './admin.css'
 
 type SessionState = 'checking' | 'authenticated' | 'anonymous'
+type ContentType = 'events' | 'blog'
 type Tab = 'add' | 'edit' | 'delete'
 
 export default function AdminApp() {
   const [sessionState, setSessionState] = useState<SessionState>('checking')
   const [email, setEmail] = useState<string | null>(null)
+  const [contentType, setContentType] = useState<ContentType>('events')
   const [tab, setTab] = useState<Tab>('add')
 
   useEffect(() => {
@@ -74,6 +79,23 @@ export default function AdminApp() {
         </div>
       </header>
 
+      <nav className="admin-tabs admin-tabs--top">
+        <button
+          type="button"
+          className={`admin-tab ${contentType === 'events' ? 'admin-tab--active' : ''}`}
+          onClick={() => setContentType('events')}
+        >
+          Events
+        </button>
+        <button
+          type="button"
+          className={`admin-tab ${contentType === 'blog' ? 'admin-tab--active' : ''}`}
+          onClick={() => setContentType('blog')}
+        >
+          Blog
+        </button>
+      </nav>
+
       <nav className="admin-tabs">
         <button
           type="button"
@@ -99,9 +121,20 @@ export default function AdminApp() {
       </nav>
 
       <main className="admin-main">
-        {tab === 'add' && <AddEventSection />}
-        {tab === 'edit' && <EditEventSection />}
-        {tab === 'delete' && <DeleteEventSection />}
+        {contentType === 'events' && (
+          <>
+            {tab === 'add' && <AddEventSection />}
+            {tab === 'edit' && <EditEventSection />}
+            {tab === 'delete' && <DeleteEventSection />}
+          </>
+        )}
+        {contentType === 'blog' && (
+          <>
+            {tab === 'add' && <AddBlogSection />}
+            {tab === 'edit' && <EditBlogSection />}
+            {tab === 'delete' && <DeleteBlogSection />}
+          </>
+        )}
       </main>
     </div>
   )

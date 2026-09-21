@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import type { ChangeEvent, FormEvent } from 'react'
 import type { Event, EventType } from '../types'
-import { EVENT_TYPE_LABELS, formatEventEyebrow } from '../lib/formatEventDate'
+import { EVENT_TYPE_LABELS, formatEventEyebrow, isoToDatetimeLocal } from '../lib/formatEventDate'
 import { uploadFile } from './lib/uploadFile'
 import { useExistingEvents } from './hooks/useExistingEvents'
 
@@ -22,13 +22,6 @@ type EditForm = {
   whatsappCtaText: string
 }
 
-function isoToDatetimeLocal(iso: string | null): string {
-  if (!iso) return ''
-  const date = new Date(iso)
-  if (Number.isNaN(date.getTime())) return ''
-  const local = new Date(date.getTime() - date.getTimezoneOffset() * 60000)
-  return local.toISOString().slice(0, 16)
-}
 
 export default function EditEventSection() {
   const { events, refetch } = useExistingEvents()

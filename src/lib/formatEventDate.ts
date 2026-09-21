@@ -33,3 +33,11 @@ export function formatEventEyebrow(event: Pick<Event, 'type' | 'start_datetime'>
   }
   return parts.join(' · ')
 }
+
+export function isoToDatetimeLocal(iso: string | null): string {
+  if (!iso) return ''
+  const date = new Date(iso)
+  if (Number.isNaN(date.getTime())) return ''
+  const local = new Date(date.getTime() - date.getTimezoneOffset() * 60000)
+  return local.toISOString().slice(0, 16)
+}

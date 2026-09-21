@@ -1,5 +1,14 @@
 # Changelog
 
+## v2.4
+
+- Add a Blog feature: Noopur can now publish articles (title, subtitle, short description, full content, date)
+- Add "Blog" to the navbar, with a listing page and individual post pages
+- Blog list cards show title, subtitle, date, and short description; full content only shows on the post's own page
+- Content is plain text (paragraph breaks preserved) — no rich text/markdown for now
+- Add a second content-type switcher to the admin panel (Events / Blog), each with its own Add/Edit/Delete tabs
+- Note: run `python db.py` again after this update to create the new blog_posts collection's schema
+
 ## v2.3
 
 - Fix Cloudinary uploads failing on production: Render was missing the CLOUDINARY_* and SECRET_KEY environment variables

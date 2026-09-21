@@ -17,3 +17,13 @@ export type Event = {
   gallery_video_urls: string[]
   whatsapp_cta_text: string
 }
+
+export type BlogPost = {
+  id: string
+  slug: string
+  title: string
+  subtitle: string
+  short_description: string
+  content: string
+  published_at: string | null
+}

@@ -7,6 +7,8 @@ import About from './pages/About'
 import BookSession from './pages/BookSession'
 import Events from './pages/Events'
 import EventDetail from './pages/EventDetail'
+import Blog from './pages/Blog'
+import BlogPost from './pages/BlogPost'
 
 const AdminApp = lazy(() => import('./admin/AdminApp'))
 
@@ -81,6 +83,22 @@ export default function AppRefactored() {
             element={
               <div className="content-shell">
                 <EventDetail />
+              </div>
+            }
+          />
+          <Route
+            path="/blog"
+            element={
+              <div className="content-shell">
+                <Blog />
+              </div>
+            }
+          />
+          <Route
+            path="/blog/:slug"
+            element={
+              <div className="content-shell">
+                <BlogPost />
               </div>
             }
           />

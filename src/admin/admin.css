@@ -92,6 +92,15 @@
   border-bottom-color: var(--primary-teal);
 }
 
+.admin-tabs--top {
+  background: var(--soft-surface);
+  padding: 12px 24px 0;
+}
+
+.admin-tabs--top .admin-tab {
+  font-size: 1rem;
+}
+
 .admin-main {
   padding: 32px 20px 64px;
   display: flex;

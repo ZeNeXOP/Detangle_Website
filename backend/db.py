@@ -88,6 +88,24 @@ BOOKING_SCHEMA = {
 }
 
 
+BLOG_POST_SCHEMA = {
+    "$jsonSchema": {
+        "bsonType": "object",
+        "required": ["slug", "title"],
+        "properties": {
+            "slug": {"bsonType": "string"},
+            "title": {"bsonType": "string"},
+            "subtitle": {"bsonType": "string"},
+            "short_description": {"bsonType": "string"},
+            "content": {"bsonType": "string"},
+            "published_at": {"bsonType": ["string", "null"]},
+            "created_at": {"bsonType": "date"},
+            "updated_at": {"bsonType": "date"},
+        },
+    }
+}
+
+
 def _apply_validator(database: Database, collection_name: str, validator: dict) -> None:
     if collection_name in database.list_collection_names():
         database.command(
@@ -136,10 +154,12 @@ def setup_schemas() -> None:
     _apply_validator(database, "events", EVENT_SCHEMA)
     _apply_validator(database, "admin_users", ADMIN_USER_SCHEMA)
     _apply_validator(database, "bookings", BOOKING_SCHEMA)
+    _apply_validator(database, "blog_posts", BLOG_POST_SCHEMA)
 
     database["events"].create_index("slug", unique=True)
     database["admin_users"].create_index("email", unique=True)
-    print("Indexes ensured: events.slug (unique), admin_users.email (unique)")
+    database["blog_posts"].create_index("slug", unique=True)
+    print("Indexes ensured: events.slug (unique), admin_users.email (unique), blog_posts.slug (unique)")
 
     print("Schema setup complete.")
 

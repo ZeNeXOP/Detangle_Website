@@ -1051,6 +1051,70 @@
   color: var(--text);
 }
 
+/* ── Blog ── */
+.blog-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 16px;
+}
+
+.blog-tile {
+  display: block;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 0 16px 44px rgba(17, 45, 52, 0.08);
+  background: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  color: inherit;
+}
+
+.blog-tile:focus-visible {
+  outline: 3px solid rgba(34, 102, 117, 0.45);
+  outline-offset: 3px;
+}
+
+.blog-tile-title {
+  margin: 0 0 4px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-h);
+}
+
+.blog-tile-subtitle {
+  margin: 0 0 8px;
+  font-size: 0.95rem;
+  color: var(--primary-teal-dark);
+}
+
+.blog-tile-date {
+  margin: 0 0 10px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  opacity: 0.7;
+}
+
+.blog-tile-excerpt {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.blog-post-content {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 720px;
+  line-height: 1.7;
+}
+
 /* ── Event detail page ── */
 .event-detail-section {
   margin-top: 92px;

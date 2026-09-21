@@ -8,6 +8,7 @@ from auth import auth_bp
 from media import media_bp
 from events import events_bp, admin_events_bp
 from bookings import bookings_bp
+from blog import blog_bp, admin_blog_bp
 
 
 def create_app() -> Flask:
@@ -35,6 +36,8 @@ def create_app() -> Flask:
     app.register_blueprint(events_bp)
     app.register_blueprint(admin_events_bp)
     app.register_blueprint(bookings_bp)
+    app.register_blueprint(blog_bp)
+    app.register_blueprint(admin_blog_bp)
 
     return app
 

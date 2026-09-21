@@ -29,6 +29,7 @@ export default function Navbar({ showBookingCta }: NavbarProps) {
           Home
         </NavLink>
         <NavLink to="/about">About</NavLink>
+        <NavLink to="/blog">Blog</NavLink>
         <NavLink to="/events">Events</NavLink>
         {showBookingCta && (
           <Link to="/book" className="button-primary">
