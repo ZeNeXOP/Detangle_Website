@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react'
 import LoginForm from './LoginForm'
-import EventUploadForm from './EventUploadForm'
+import AddEventSection from './AddEventSection'
+import EditEventSection from './EditEventSection'
+import DeleteEventSection from './DeleteEventSection'
 import './admin.css'
 
 type SessionState = 'checking' | 'authenticated' | 'anonymous'
+type Tab = 'add' | 'edit' | 'delete'
 
 export default function AdminApp() {
   const [sessionState, setSessionState] = useState<SessionState>('checking')
   const [email, setEmail] = useState<string | null>(null)
+  const [tab, setTab] = useState<Tab>('add')
 
   useEffect(() => {
     const meta = document.createElement('meta')
@@ -69,8 +73,35 @@ export default function AdminApp() {
           </button>
         </div>
       </header>
+
+      <nav className="admin-tabs">
+        <button
+          type="button"
+          className={`admin-tab ${tab === 'add' ? 'admin-tab--active' : ''}`}
+          onClick={() => setTab('add')}
+        >
+          Add
+        </button>
+        <button
+          type="button"
+          className={`admin-tab ${tab === 'edit' ? 'admin-tab--active' : ''}`}
+          onClick={() => setTab('edit')}
+        >
+          Edit
+        </button>
+        <button
+          type="button"
+          className={`admin-tab ${tab === 'delete' ? 'admin-tab--active' : ''}`}
+          onClick={() => setTab('delete')}
+        >
+          Delete
+        </button>
+      </nav>
+
       <main className="admin-main">
-        <EventUploadForm />
+        {tab === 'add' && <AddEventSection />}
+        {tab === 'edit' && <EditEventSection />}
+        {tab === 'delete' && <DeleteEventSection />}
       </main>
     </div>
   )
