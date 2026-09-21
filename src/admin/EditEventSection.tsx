@@ -13,7 +13,8 @@ type EditForm = {
   title: string
   status: 'upcoming' | 'past'
   type: EventType | ''
-  description: string
+  shortDescription: string
+  longDescription: string
   startDateTime: string
   upcomingCutoffHours: string
   location: string
@@ -51,7 +52,8 @@ export default function EditEventSection() {
       title: event.title,
       status: event.status,
       type: event.type ?? '',
-      description: event.description ?? '',
+      shortDescription: event.short_description ?? '',
+      longDescription: event.long_description ?? '',
       startDateTime: isoToDatetimeLocal(event.start_datetime),
       upcomingCutoffHours: event.upcoming_cutoff_hours ? String(event.upcoming_cutoff_hours) : '',
       location: event.location ?? '',
@@ -168,7 +170,8 @@ export default function EditEventSection() {
           title: form.title.trim(),
           status: form.status,
           type: form.type || null,
-          description: form.description,
+          short_description: form.shortDescription,
+          long_description: form.longDescription,
           start_datetime: startDateTimeIso,
           upcoming_cutoff_hours: form.upcomingCutoffHours ? Number(form.upcomingCutoffHours) : 0,
           location: form.location,
@@ -265,8 +268,23 @@ export default function EditEventSection() {
             </label>
 
             <label className="admin-field">
-              <span>Description</span>
-              <textarea rows={4} value={form.description} onChange={(e) => updateField('description', e.target.value)} />
+              <span>Short Description</span>
+              <textarea
+                rows={2}
+                value={form.shortDescription}
+                onChange={(e) => updateField('shortDescription', e.target.value)}
+                placeholder="One or two lines shown on the homepage upcoming-event card"
+              />
+            </label>
+
+            <label className="admin-field">
+              <span>Long Description</span>
+              <textarea
+                rows={4}
+                value={form.longDescription}
+                onChange={(e) => updateField('longDescription', e.target.value)}
+                placeholder="The full description shown on the event's own page"
+              />
             </label>
 
             <div className="admin-field-row">

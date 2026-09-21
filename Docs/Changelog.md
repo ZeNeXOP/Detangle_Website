@@ -1,5 +1,15 @@
 # Changelog
 
+## v2.3
+
+- Fix Cloudinary uploads failing on production: Render was missing the CLOUDINARY_* and SECRET_KEY environment variables
+- Show the real error message when an upload fails instead of a generic "Upload failed"
+- Split the event description into a short description and a long description
+- Short description shows on the upcoming event section on the landing page
+- Long description shows on the event's own page
+- Make the whole upcoming event card on the landing page clickable, linking straight to that event's page
+- Note: existing events need their Short/Long Description filled in again via the Edit tab (the old single description field is no longer used)
+
 ## v2.2
 
 - Remove the description text from the upcoming event section on the landing page

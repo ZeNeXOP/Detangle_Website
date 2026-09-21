@@ -92,7 +92,7 @@ export default function EventDetail() {
         <div>
           {event.location && <p className="lead">{event.location}</p>}
           {typeof event.price === 'number' && <p className="lead">₹{event.price} per person</p>}
-          <p>{event.description}</p>
+          <p>{event.long_description}</p>
 
           {mediaItems.length > 0 && (
             <div className="event-detail-media-grid">

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import type { Event } from "../types";
 import { formatEventEyebrow } from "../lib/formatEventDate";
 
 function EventCard({ event, compact }: { event: Event; compact: boolean }) {
   return (
-    <div className={compact ? "event-card" : "event-inner"}>
+    <Link to={`/events/${event.slug}`} className={compact ? "event-card" : "event-inner"}>
       <div className={compact ? "event-card-poster-slot" : "event-poster-slot"}>
         <div className={compact ? "event-card-poster-placeholder" : "event-poster-placeholder"}>
           {event.poster_url && (
@@ -24,6 +25,10 @@ function EventCard({ event, compact }: { event: Event; compact: boolean }) {
 
         <h2 className={compact ? "event-card-title" : "event-title"}>{event.title}</h2>
 
+        {event.short_description && (
+          <p className={compact ? "event-card-subhead" : "event-subhead"}>{event.short_description}</p>
+        )}
+
         {event.location && (
           <p className={compact ? "event-card-location" : "event-subhead"}>{event.location}</p>
         )}
@@ -37,7 +42,7 @@ function EventCard({ event, compact }: { event: Event; compact: boolean }) {
           </div>
         )}
       </div>
-    </div>
+    </Link>
   );
 }
 

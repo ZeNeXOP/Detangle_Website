@@ -18,7 +18,8 @@ type EventDetailsForm = {
   slug: string
   status: EventStatus | ''
   type: EventType | ''
-  description: string
+  shortDescription: string
+  longDescription: string
   startDateTime: string
   upcomingCutoffHours: string
   location: string
@@ -31,7 +32,8 @@ const EMPTY_DETAILS: EventDetailsForm = {
   slug: '',
   status: '',
   type: '',
-  description: '',
+  shortDescription: '',
+  longDescription: '',
   startDateTime: '',
   upcomingCutoffHours: '',
   location: '',
@@ -174,7 +176,8 @@ export default function AddEventSection() {
           title: details.title.trim(),
           status: details.status,
           type: details.type || undefined,
-          description: details.description,
+          short_description: details.shortDescription,
+          long_description: details.longDescription,
           start_datetime: startDateTimeIso,
           upcoming_cutoff_hours: details.upcomingCutoffHours ? Number(details.upcomingCutoffHours) : undefined,
           location: details.location,
@@ -272,12 +275,22 @@ export default function AddEventSection() {
         </label>
 
         <label className="admin-field">
-          <span>Description</span>
+          <span>Short Description</span>
+          <textarea
+            rows={2}
+            value={details.shortDescription}
+            onChange={(e) => updateField('shortDescription', e.target.value)}
+            placeholder="One or two lines shown on the homepage upcoming-event card"
+          />
+        </label>
+
+        <label className="admin-field">
+          <span>Long Description</span>
           <textarea
             rows={4}
-            value={details.description}
-            onChange={(e) => updateField('description', e.target.value)}
-            placeholder="What is this event about?"
+            value={details.longDescription}
+            onChange={(e) => updateField('longDescription', e.target.value)}
+            placeholder="The full description shown on the event's own page"
           />
         </label>
 

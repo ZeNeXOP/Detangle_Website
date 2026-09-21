@@ -4,7 +4,8 @@ export type Event = {
   id: string
   slug: string
   title: string
-  description: string
+  short_description: string
+  long_description: string
   type: EventType | null
   start_datetime: string | null
   upcoming_cutoff_hours: number

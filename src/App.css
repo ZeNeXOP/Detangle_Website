@@ -216,6 +216,9 @@
   grid-template-columns: 340px 1fr;
   gap: clamp(32px, 5vw, 72px);
   align-items: center;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
 
 /* ── Poster slot ── */
@@ -445,6 +448,15 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: background 200ms ease, border-color 200ms ease;
+}
+
+.event-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.22);
 }
 
 .event-card-poster-slot {
