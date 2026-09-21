@@ -27,15 +27,23 @@ def _ensure_configured() -> None:
 @media_bp.post("/uploads")
 @login_required
 def upload_media():
+    if not all(
+        os.getenv(key)
+        for key in ("CLOUDINARY_CLOUD_NAME", "CLOUDINARY_API_KEY", "CLOUDINARY_API_SECRET")
+    ):
+        return jsonify({"error": "Cloudinary is not configured on the server (missing env vars)"}), 500
+
     _ensure_configured()
 
     file = request.files.get("file")
     if not file:
         return jsonify({"error": "No file provided"}), 400
 
-    result = cloudinary.uploader.upload(
-        file, resource_type="auto", folder="detangle/events"
-    )
+    try:
+        result = cloudinary.uploader.upload(file, resource_type="auto", folder="detangle/events")
+    except Exception as error:  # surface the real reason instead of a bare 500
+        return jsonify({"error": f"Upload to Cloudinary failed: {error}"}), 502
+
     return (
         jsonify({"url": result["secure_url"], "resource_type": result["resource_type"]}),
         201,
