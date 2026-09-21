@@ -20,6 +20,7 @@ export const EVENT_TYPE_LABELS: Record<string, string> = {
   therapy_session: 'Therapy Session',
   online_session: 'Online Session',
   group_session: 'Group Session',
+  program: 'Program',
 }
 
 export function formatEventEyebrow(event: Pick<Event, 'type' | 'start_datetime'>): string {

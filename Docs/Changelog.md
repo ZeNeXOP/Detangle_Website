@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.2
+
+- Remove the description text from the upcoming event section on the landing page
+- Add "Program" as a new event type option in the admin panel (Add and Edit)
+- Note: run `python db.py` again after this update to let MongoDB accept the new "Program" type
+
 ## v2.1
 
 - Fix production deployment: route /api requests through Vercel to the Render backend

@@ -1,4 +1,4 @@
-export type EventType = 'workshop' | 'therapy_session' | 'online_session' | 'group_session'
+export type EventType = 'workshop' | 'therapy_session' | 'online_session' | 'group_session' | 'program'
 
 export type Event = {
   id: string

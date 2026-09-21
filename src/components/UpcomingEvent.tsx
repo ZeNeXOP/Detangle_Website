@@ -24,8 +24,6 @@ function EventCard({ event, compact }: { event: Event; compact: boolean }) {
 
         <h2 className={compact ? "event-card-title" : "event-title"}>{event.title}</h2>
 
-        <p className={compact ? "event-card-subhead" : "event-subhead"}>{event.description}</p>
-
         {event.location && (
           <p className={compact ? "event-card-location" : "event-subhead"}>{event.location}</p>
         )}

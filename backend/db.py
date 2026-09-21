@@ -41,6 +41,7 @@ EVENT_SCHEMA = {
                     "therapy_session",
                     "online_session",
                     "group_session",
+                    "program",
                 ],
             },
             "description": {"bsonType": "string"},

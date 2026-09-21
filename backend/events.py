@@ -8,7 +8,7 @@ from db import get_database
 events_bp = Blueprint("events", __name__, url_prefix="/api")
 admin_events_bp = Blueprint("admin_events", __name__, url_prefix="/api/admin")
 
-EVENT_TYPES = ["workshop", "therapy_session", "online_session", "group_session"]
+EVENT_TYPES = ["workshop", "therapy_session", "online_session", "group_session", "program"]
 EVENT_STATUSES = ["upcoming", "past"]
 
 REQUIRED_FIELDS = ["slug", "title", "status"]
