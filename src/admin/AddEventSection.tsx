@@ -286,6 +286,10 @@ export default function AddEventSection() {
 
         <label className="admin-field">
           <span>Long Description</span>
+          <p className="admin-form-section-hint">
+            Leave a blank line between paragraphs. Use **bold** and *italic* for emphasis, and start
+            a line with "- " for a bullet list.
+          </p>
           <textarea
             rows={4}
             value={details.longDescription}

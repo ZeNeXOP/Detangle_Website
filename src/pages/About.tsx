@@ -30,6 +30,11 @@ const qualifications = [
     label: 'Integrative Techniques',
     desc: 'Working knowledge of NLP, Emotional Freedom Technique (EFT), and Shadow Work for a holistic and flexible approach to each individual.',
   },
+  {
+    label: 'Reiki Practitioner',
+    suffix: 'Level 3 · Teacher training eligible',
+    desc: 'Trained to Level Three Reiki, with eligibility for teacher training — bringing energy work into sessions alongside talk-based therapy.',
+  },
 ]
 
 const stats = [
@@ -48,7 +53,7 @@ export default function About() {
           <div className="about-hero-text">
             <p className="about-eyebrow">About</p>
             <h1 className="about-name">Noopur Asthana</h1>
-            <p className="about-role">Trainee Psychologist · Founder of Detangle</p>
+            <p className="about-role">Psychotherapist · Holistic Healer · Founder of Detangle</p>
             <p className="about-intro">
               Hi, I'm Noopur — the person behind Detangle. My approach to therapy is simple: to
               create a space where you feel safe, heard, and understood, without any judgment.

@@ -7,9 +7,9 @@ export default function WelcomeSection() {
         <h2 className="welcome-heading">A Space to Simply Be</h2>
 
         <p className="welcome-body">
-          At Detangle, our aim is to create a space where you can simply be yourself — without fear,
-          hesitation, or judgment. Everyone carries their own unique story, and this space is
-          designed to meet you with gentleness, understanding, and care.
+          At Detangle, I believe there’s more to healing than simply talking about what’s wrong.
+          Sometimes we need to understand our thoughts, sometimes feel what we’ve been holding in, 
+          sometimes create, release, reconnect, or simply come back to ourselves.
         </p>
 
         <blockquote className="welcome-quote">

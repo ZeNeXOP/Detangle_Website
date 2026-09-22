@@ -105,7 +105,7 @@ export default function AppRefactored() {
           <Route
             path="/book"
             element={
-              <div className="content-shell" style={{ paddingTop: '92px' }}>
+              <div className="content-shell">
                 <BookSession />
               </div>
             }

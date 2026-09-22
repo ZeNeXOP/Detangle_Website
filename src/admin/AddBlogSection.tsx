@@ -133,11 +133,15 @@ export default function AddBlogSection() {
 
         <label className="admin-field">
           <span>Blog Content</span>
+          <p className="admin-form-section-hint">
+            Leave a blank line between paragraphs. Use **bold** and *italic* for emphasis, and start
+            a line with "- " for a bullet list.
+          </p>
           <textarea
             rows={12}
             value={form.content}
             onChange={(e) => updateField('content', e.target.value)}
-            placeholder="The full article — leave a blank line between paragraphs"
+            placeholder="The full article — leave a blank line between paragraphs. **bold** and *italic* are supported."
           />
         </label>
       </section>

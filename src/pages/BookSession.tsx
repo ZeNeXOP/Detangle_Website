@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import type { FormEvent } from 'react'
 
+const noopurPhoto = '/assets/noopur_3.png'
+
 type BookingForm = {
   full_name: string
   email: string
@@ -63,6 +65,15 @@ export default function BookSession() {
       <p className="section-intro">
         Fill in your details and Detangle will get back to you to confirm your session.
       </p>
+
+      <div className="booking-intro-panel">
+        <img src={noopurPhoto} alt="Noopur Asthana" className="booking-intro-photo" />
+        <p className="booking-intro-text">
+          Noopur will get back to you within 24 hours to confirm your session. No pressure, no
+          judgment.
+        </p>
+      </div>
+
       <form className="booking-form" onSubmit={handleSubmit}>
         <label>
           Full Name
@@ -108,6 +119,10 @@ export default function BookSession() {
         <button className="button-primary" disabled={isSubmitting} type="submit">
           {isSubmitting ? 'Submitting...' : 'Submit'}
         </button>
+
+        <p className="booking-privacy-note">
+          Your details stay private and are only used to confirm your session.
+        </p>
       </form>
 
       {submitMessage && <p className="status-message success">{submitMessage}</p>}

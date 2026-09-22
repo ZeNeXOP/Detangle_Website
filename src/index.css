@@ -1,21 +1,47 @@
 :root {
-  --text: #526068;
-  --text-h: #1f4f54;
-  --bg: #f8f9f7;
-  --surface: #fff6cf;
-  --soft-surface: #faefbf;
-  --container-soft: #fff9e2;
-  --border: #d7ddd8;
-  --primary-teal: #2d7377;
-  --primary-teal-dark: #1f5c5f;
-  --focus-ring: rgba(45, 115, 119, 0.35);
+  /* ── Core palette (cream / teal / yellow — unchanged brand, refined values) ── */
+  --cream: #fbf6e4;
+  --cream-alt: #f4efdb;
+  --surface: #ffffff;
+  --yellow-tint: #fff3c4;
+  --yellow: #ffc94a;
+  --yellow-soft: #ffe38a;
+  --teal: #1f6367;
+  --teal-dark: #17494d;
+  --teal-deep: #12312f;
+  --teal-tint: #e4eeec;
+  --ink: #16363a;
+  --ink-soft: #4c5d61;
+  --cream-text: #fff7dd;
+  --border: #e6dfc7;
+  --danger: #c9402c;
+  --focus-ring: rgba(31, 99, 103, 0.35);
 
-  --sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  --heading: Georgia, 'Times New Roman', serif;
+  /* ── Legacy aliases (kept so nothing silently loses its color) ── */
+  --text: var(--ink-soft);
+  --text-h: var(--ink);
+  --bg: var(--cream);
+  --soft-surface: var(--yellow-tint);
+  --container-soft: var(--cream-alt);
+  --primary-teal: var(--teal);
+  --primary-teal-dark: var(--teal-dark);
 
-  font: 17px/1.55 var(--sans);
-  color: var(--text);
-  background: var(--bg);
+  /* ── Type ── */
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Work Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+  --sans: var(--font-body);
+  --heading: var(--font-display);
+
+  /* ── Neobrutalist accents — spent only on things you click ── */
+  --hard-border: 2px solid var(--ink);
+  --hard-shadow: 4px 4px 0 var(--ink);
+  --hard-shadow-sm: 3px 3px 0 var(--ink);
+  --hard-shadow-lg: 6px 6px 0 var(--ink);
+
+  font: 17px/1.55 var(--font-body);
+  color: var(--ink-soft);
+  background: var(--cream);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -36,19 +62,20 @@ body {
   margin: 0;
   min-height: 100vh;
   overflow-x: hidden;
-  background: radial-gradient(circle at top, #fbf7e5 0%, var(--bg) 30%);
+  background: radial-gradient(circle at top, #fdf9ea 0%, var(--cream) 30%);
 }
 
 h1,
 h2,
 h3 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--ink);
+  text-wrap: balance;
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 1.9rem;
   margin: 0 0 14px;
 }
 
@@ -59,6 +86,20 @@ h2 {
 
 p {
   margin: 0;
+}
+
+a {
+  color: var(--teal);
+}
+
+::selection {
+  background: var(--yellow-soft);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
 }
 
 #root {

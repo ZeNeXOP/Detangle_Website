@@ -1,5 +1,18 @@
 # Changelog
 
+## v3.0
+
+- Full frontend redesign: same page structure and palette (cream/teal/yellow), refreshed with real typography (Fraunces/Work Sans/JetBrains Mono) and a subtle neobrutalist accent (hard borders + offset shadows on buttons, cards, chips and the nav) — kept deliberately restrained, everything else stays soft and calm
+- Rebuilt the navbar as a sticky bar with a proper mobile hamburger menu, replacing the old floating pill that wrapped and overlapped page headings on small screens
+- Landing hero is full-height again; the upcoming-events section is now a pair of wide horizontal panels (poster + info side by side), alternating sides between the two events, on both desktop and mobile
+- Services grid expanded from 4 to 8: Therapy Sessions (now explicitly online + in person), Reiki, Sound Healing, Aura Cleansing, Chakra Balancing, Dedicated Programs, Workshops & Events, Group Sessions
+- Added a "Level 3 Reiki Practitioner / teacher-training eligible" qualification to the About page
+- Book a Session page: added a short reassurance panel (Noopur's photo + a 24-hour response note) and a privacy line under the form
+- Blog listing is now a single column of larger, more readable cards
+- Blog posts and event long descriptions now support **bold**, *italic*, and "- " bullet lists, and correctly preserve line breaks and paragraph spacing — previously everything collapsed into one run-on paragraph. Admin forms show a hint with the supported syntax
+- Widened the content column on the Events and Blog pages (less dead space on the sides)
+- Admin panel: same layout, restyled with the new tokens
+
 ## v2.4
 
 - Add a Blog feature: Noopur can now publish articles (title, subtitle, short description, full content, date)

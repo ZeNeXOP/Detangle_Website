@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import type { Event } from '../types'
 import { formatEventEyebrow } from '../lib/formatEventDate'
+import { renderRichText } from '../lib/richText'
 
 type MediaItem = { type: 'image' | 'video'; src: string }
 
@@ -92,7 +93,7 @@ export default function EventDetail() {
         <div>
           {event.location && <p className="lead">{event.location}</p>}
           {typeof event.price === 'number' && <p className="lead">₹{event.price} per person</p>}
-          <p>{event.long_description}</p>
+          <div className="event-detail-description">{renderRichText(event.long_description)}</div>
 
           {mediaItems.length > 0 && (
             <div className="event-detail-media-grid">

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import type { BlogPost as BlogPostType } from '../types'
 import { formatEventDate } from '../lib/formatEventDate'
+import { renderRichText } from '../lib/richText'
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>()
@@ -52,8 +53,6 @@ export default function BlogPost() {
     )
   }
 
-  const paragraphs = post.content.split(/\n\s*\n/).filter((p) => p.trim().length > 0)
-
   return (
     <section className="section event-detail-section">
       <Link to="/blog" className="event-detail-back">
@@ -64,11 +63,7 @@ export default function BlogPost() {
       <h1>{post.title}</h1>
       {post.subtitle && <p className="lead">{post.subtitle}</p>}
 
-      <div className="blog-post-content">
-        {paragraphs.length > 0
-          ? paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)
-          : null}
-      </div>
+      <div className="blog-post-content">{renderRichText(post.content)}</div>
     </section>
   )
 }
