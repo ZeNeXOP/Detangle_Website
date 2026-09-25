@@ -4,15 +4,18 @@ import type { ReactNode } from 'react'
  * Renders plain text written in the admin panel into React nodes, preserving:
  *  - blank-line-separated paragraphs
  *  - single line breaks within a paragraph
- *  - lines starting with "- " or "• " as a bullet list (can appear right after
- *    a heading/intro line, with no blank line in between)
+ *  - lines starting with "- ", "* " or "• " as a bullet list (can appear right
+ *    after a heading/intro line, with no blank line in between)
  *  - **bold** and *italic* / _italic_ inline formatting
  *
  * This is intentionally a small, safe subset (not full markdown) — content
  * always renders as React elements, never raw HTML, so there is no injection risk.
+ *
+ * "* " only counts as a bullet when followed by whitespace, so it never
+ * collides with *italic* (which has no space after the opening asterisk).
  */
 
-const BULLET_PATTERN = /^([-•])\s+/
+const BULLET_PATTERN = /^([-*•])\s+/
 
 function renderInline(text: string, keyPrefix: string): ReactNode[] {
   // Split on **bold**, *italic*, or _italic_ while keeping the delimiters,

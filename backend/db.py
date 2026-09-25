@@ -4,6 +4,8 @@ from dotenv import load_dotenv
 from pymongo import MongoClient
 from pymongo.database import Database
 
+from constants import SERVICE_TYPES
+
 # Loaded here (not just in app.py) so this module works standalone —
 # e.g. `python db.py` to (re)apply schema validation without starting Flask.
 load_dotenv()
@@ -74,7 +76,7 @@ ADMIN_USER_SCHEMA = {
 BOOKING_SCHEMA = {
     "$jsonSchema": {
         "bsonType": "object",
-        "required": ["full_name", "email", "phone", "status", "payment_status"],
+        "required": ["full_name", "email", "phone", "status", "payment_status", "booking_type"],
         "properties": {
             "full_name": {"bsonType": "string"},
             "email": {"bsonType": "string"},
@@ -82,6 +84,10 @@ BOOKING_SCHEMA = {
             "notes": {"bsonType": "string"},
             "status": {"enum": ["pending", "accepted", "rejected"]},
             "payment_status": {"bsonType": "string"},
+            "booking_type": {"enum": ["service", "event"]},
+            "service_type": {"bsonType": ["string", "null"], "enum": [None, *SERVICE_TYPES]},
+            "event_slug": {"bsonType": ["string", "null"]},
+            "event_title": {"bsonType": ["string", "null"]},
             "created_at": {"bsonType": "date"},
         },
     }

@@ -274,7 +274,7 @@ export default function EditEventSection() {
               <span>Long Description</span>
               <p className="admin-form-section-hint">
                 Leave a blank line between paragraphs. Use **bold** and *italic* for emphasis, and
-                start a line with "- " for a bullet list.
+                start a line with "- " or "* " for a bullet list.
               </p>
               <textarea
                 rows={4}

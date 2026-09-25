@@ -93,6 +93,11 @@ export default function EventDetail() {
         <div>
           {event.location && <p className="lead">{event.location}</p>}
           {typeof event.price === 'number' && <p className="lead">₹{event.price} per person</p>}
+          {event.status === 'upcoming' && (
+            <Link to={`/book?event=${event.slug}`} className="event-register-btn">
+              Register
+            </Link>
+          )}
           <div className="event-detail-description">{renderRichText(event.long_description)}</div>
 
           {mediaItems.length > 0 && (

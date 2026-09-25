@@ -24,4 +24,8 @@ API runs at `http://localhost:5000` by default.
 ## Endpoints
 
 - `GET /api/health` - health check
-- `POST /api/registrations` - create a workshop registration
+- `POST /api/bookings` - create a booking (`booking_type: "service"` or `"event"` — see `notifications.py`)
+
+## Booking notifications
+
+`POST /api/bookings` with `booking_type: "service"` sends Noopur a notification via email (Resend) and WhatsApp (Twilio). Both are optional independently — set the env vars in `.env.example` for whichever you want live; a booking still saves fine with neither configured, it just skips that channel with a log line. `booking_type: "event"` doesn't send anything server-side — the frontend opens a `wa.me` link directly using that event's own WhatsApp message.

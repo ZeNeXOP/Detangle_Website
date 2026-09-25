@@ -135,7 +135,7 @@ export default function AddBlogSection() {
           <span>Blog Content</span>
           <p className="admin-form-section-hint">
             Leave a blank line between paragraphs. Use **bold** and *italic* for emphasis, and start
-            a line with "- " for a bullet list.
+            a line with "- " or "* " for a bullet list.
           </p>
           <textarea
             rows={12}
